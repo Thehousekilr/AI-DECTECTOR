@@ -1,0 +1,125 @@
+/* RESET & GLOBAL */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  color: #00ffcc;
+  background: black;
+}
+
+/* VIDEO FULL SCREEN */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: brightness(1.1) contrast(1.2) saturate(1.2);
+}
+
+/* OVERLAY HUD */
+.overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+/* TITLE (GLOW + ANIMASI) */
+#title {
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+  animation: flicker 2s infinite;
+}
+
+/* STATUS */
+#status {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* OUTPUT TEXT BESAR */
+#outputText {
+  margin-top: 25px;
+  font-size: 28px;
+  color: white;
+  text-shadow: 0 0 10px white;
+  animation: fadeIn 1s ease;
+}
+
+/* SCAN LINE EFFECT */
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    rgba(0,255,200,0.05) 0px,
+    rgba(0,255,200,0.05) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* SCANNING BAR (GERAK) */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 3px;
+  background: #00ffcc;
+  box-shadow: 0 0 15px #00ffcc;
+  animation: scan 3s linear infinite;
+  z-index: 3;
+}
+
+/* EMOTION EFFECTS */
+.happy video {
+  filter: hue-rotate(90deg) brightness(1.3) saturate(1.5);
+}
+
+.angry video {
+  filter: hue-rotate(-50deg) contrast(1.6) brightness(0.8);
+  animation: shake 0.3s infinite;
+}
+
+.neutral video {
+  filter: grayscale(0.4);
+}
+
+/* ANIMATIONS */
+
+/* scan bar gerak */
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* glitch flicker title */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* fade teks */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* shake saat marah */
+@keyframes shake {
+  0% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, -2px); }
+  100% { transform: translate(1px, -1px); }
+}
+
+.overlay {
+  backdrop-filter: blur(5px);
+}
